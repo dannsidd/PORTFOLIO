@@ -3,67 +3,620 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./body.css">
-    <title>Document</title>
+    <title>Danush Siddarth - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #f8f9fa;
+            background: #0f172a;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: bold;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: #f8f9fa;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            padding: 2rem;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.95)),
+                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #cbd5e1;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.8);
+            color: #fff;
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #a78bfa, #ec4899);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1;
+        }
+
+        .social-link:hover::before {
+            opacity: 1;
+        }
+
+        .social-link i {
+            font-size: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(167, 139, 250, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3.5rem;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: #1e293b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(167, 139, 250, 0.1), rgba(236, 72, 153, 0.1));
+            pointer-events: none;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: justify;
+            color: #cbd5e1;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-card {
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(167, 139, 250, 0.1), rgba(236, 72, 153, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Portfolio Section */
+        #portfolio {
+            background: #1e293b;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            aspect-ratio: 16/9;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.7));
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .portfolio-overlay p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(30, 41, 59, 0.8);
+            padding: 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(167, 139, 250, 0.2);
+            border-radius: 0.5rem;
+            color: #f8f9fa;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #a78bfa;
+            box-shadow: 0 0 0 2px rgba(167, 139, 250, 0.2);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(to right, #a78bfa, #ec4899);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e293b;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.25rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            position: relative;
+            display: block;
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            background: linear-gradient(45deg, #a78bfa, #ec4899) border-box;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) padding-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo::after {
+            content: '';
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #a78bfa, #ec4899);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: destination-out;
+            mask-composite: exclude;
+            opacity: 0.5;
+        }
+
+        .profile-photo:hover img {
+            transform: scale(1.05);
+        }
+
+    </style>
 </head>
 <body>
-    
-    <blockquote><center>
-            "NEVER SAY NEVER"
-            <p>&mdash; Mark Calaway</p>
-    </blockquote>
-    <hr>
-    <img src="DSC0802312.jpg" width="" height="500"> <h1>DANUSH SIDDARTH</h1>
-    <br>
-    <br>
-    <h1>SKILLS</h1>
-    
-    <ul>
-        <li>Python</li>
-        <li>C</li>
-        <li>SQL</li>
-        <li>HTML, CSS, Javascript</li>
-    </ul>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">DS</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
 
-    <h1>PROJECTS</h1>
-    
-    <ul>
-        <li>TASK MANAGEMENT SYSTEM in C</li>
-        <li>WHOLESALE MANAGEMENT SYSTEM in C</li>
-        <li>TIC-TAC-TOE game in Python</li>
-    </ul>
+    <!-- Hero Section -->
+       <!-- Hero Section -->
+       <section class="hero">
+        <div class="hero-content">
+            <div class="profile-photo">
+                <img src="myphoto.jpg" alt="Danush Siddarth">
 
-    <h1>ABOUT ME</h1>
-    <p>As a dedicated student pursuing a Bachelor's degree in Computer Science, I am passionate about exploring the vast realms of technology and its applications.I am also an amateur music producer, crafting melodies that resonate with my creativity. Additionally, I am a fervent wrestling enthusiast, finding inspiration in the athleticism and storytelling of this dynamic sport.
- My journey in computer science has fueled a keen interest in cybersecurity. I am determined to enhance my skills in this critical field, ensuring the safety and integrity of </p>
-    
-   <form><center>
-     
-        <br>  
-        <center><h2>CONTACT</h2></center>
-        <br>  
-      
-      
-        <label> Firstname: </label>         
-        <input type="text" name="firstname"> <br> <br>  
-        <label> Lastname: </label>         
-        <input type="text" name="lastname" > <br> <br>  
-    
-        <label>Phone :</label>  
-        <input type="text" name="country code"  value="+91" size="2"/>   
-        <input type="text" name="phone" size="10"/> <br> <br>  
-        Address  
-        <br>  
-        <textarea cols="50" rows="5" value="address">  
-        </textarea>  
-        <br> <br>  
-        <label>Email : danushsiddarth0509@gmail</label>  
-        <br>    
-        <br> 
-        <p><strong>LinkedIn : </strong> <a href="https://www.linkedin.com/in/danush-siddarth-k-487930280/" target="_blank" title="Visit LinkedIn Profile?">www.linkedin.com/in/danushsiddarthk</a></p><br>  
-        <input type="button" value="Submit"/>  
-        
-    </center>
-    </form>
+            </div>
+            <h1>Danush Siddarth K</h1>
+            <p>Software Developer | Problem Solver | Technology Enthusiast</p>
+            <div class="social-links">
+                <a href="https://linkedin.com/in/danush-siddarth" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="https://github.com/danush-siddarth" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://tryhackme.com/p/danush.siddarth" class="social-link" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-user-secret"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <p>Hi, I'm Danush!
+                    A cybersecurity enthusiast with a strong passion for networking and ethical hacking. I'm proud to be in the top 5% of TryHackMe and enjoy exploring the world of cybersecurity. I have hands-on experience working with Java, Python, and C on various projects, including working with JDBC for database connectivity in Java.
+                    <br><br>
+                    Always eager to learn and solve real-world problems, I focus on creating secure solutions and understanding complex systems. My expertise extends to various networking concepts, and I’m constantly pushing the boundaries to deepen my knowledge in both cybersecurity and development.
+                    
+                    </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+    <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-grid">
+            <!-- Programming Languages -->
+            <div class="skill-card">Python</div>
+            <div class="skill-card">Java</div>
+            <div class="skill-card">C</div>
+            
+            <!-- Web Technologies -->
+            <div class="skill-card">HTML/CSS</div>
+            <div class="skill-card">JavaScript</div>
+            
+            <!-- Cybersecurity & Networking -->
+            <div class="skill-card">Cybersecurity </div>
+            <div class="skill-card">Ethical Hacking</div>
+            <div class="skill-card">Penetration Testing</div>
+            <div class="skill-card">Network Security</div>
+            <div class="skill-card">Cryptography</div>
+            
+            <!-- Database & Frameworks -->
+            <div class="skill-card">SQL</div>
+            <div class="skill-card">JDBC</div>
+            <div class="skill-card">MySQL</div>
+            
+            <!-- Problem Solving & Tools -->
+            <div class="skill-card">Problem Solving</div>
+            <div class="skill-card">Wireshark</div>
+            <div class="skill-card">Kali Linux</div>
+            <div class="skill-card">Burp Suite</div>
+        </div>
+    </div>
+</section>
+
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Portfolio</h2>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Project 1">
+                    <div class="portfolio-overlay">
+                        <h3><a href="https://github.com/dannsidd/PersonalFinanceTracker">Personal Finance Tracker</a></h3>
+                        <p>A Django Personal Finance Tracker with login/logout, expense CRUD, and auto summaries.</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Project 2">
+                    <div class="portfolio-overlay">
+                        <h3><a href="https://github.com/dannsidd/EventManagementSystem">Event Management System</a></h3>
+                        <p>To Book events using JDBC</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Project 3">
+                    <div class="portfolio-overlay">
+                        <h3><a href="https://github.com/dannsidd/VechileStatusTracking">Vechile Status Tracker</a></h3>
+                        <p>Tracking vechile using JDBC connectivity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Me</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea rows="4" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Danush Siddarth. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
